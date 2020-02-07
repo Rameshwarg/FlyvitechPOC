@@ -11,48 +11,41 @@ import ObjectMapper
 import struct Kingfisher.KFImage
 
 struct ContentView: View {
-    
-    @ObservedObject var data = NetworkManager.sharedIntance
-    
-    let imageSize:CGFloat = 100
-    
-    var body: some View {
-        NavigationView {
-            List(self.data.dataList) { cellData in
-                
-                //                KFImage(URL(string:cellData.imageHref ?? "")).placeholder {
-                //                    Image(systemName: "arrow.2.circlepath.circle")
-                //                        .font(.largeTitle)
-                //                        .opacity(0.3)
-                //                }
-                KFImage(URL(string:cellData.imageHref ?? ""))
-                    .onSuccess { r in
-                        
-                }
-                .onFailure { e in }
-                .placeholder {
-                    Image(systemName: "placeholder.png").font(.largeTitle)
-                    .opacity(0.3)
-                }
-                .resizable()
-                .frame(width: self.imageSize, height: self.imageSize).cornerRadius(self.imageSize/2)
-                
-                VStack(alignment: .leading) {
-                    Text(cellData.title ?? "")
-                    Text(cellData.description ?? "").font(.subheadline).colorMultiply(.red)
-                }
-            }.navigationBarTitle(Text(data.hearderTitle))
+  
+  @ObservedObject var data = NetworkManager.sharedIntance
+  let imageSize:CGFloat = 100
+  
+  var body: some View {
+    NavigationView {
+      List(self.data.dataList) { cellData in
+        //load image from url
+        KFImage(URL(string:cellData.imageHref ?? ""))
+          .onSuccess { r in
         }
+        .onFailure { e in
+        }
+        .placeholder {
+          // set placeholder image
+          Image("placeholder")
+        }
+        .resizable()
+        .frame(width: self.imageSize, height: self.imageSize).cornerRadius(self.imageSize/2)
+        
+        VStack(alignment: .leading) {
+          Text(cellData.title ?? "")
+          Text(cellData.description ?? "").font(.subheadline).colorMultiply(.red)
+        }
+      }.navigationBarTitle(Text(data.headerTitle))
     }
+  }
 }
 
 #if DEBUG
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
 #endif
 
