@@ -9,7 +9,6 @@
 import Foundation
 import ObjectMapper
 
-
 public struct RootData {
     let result : [Data]?
     let headerTitle:String?

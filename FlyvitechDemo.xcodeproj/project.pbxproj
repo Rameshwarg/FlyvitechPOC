@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		873DE78423EC36840010D54E /* FlyvitechDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873DE78323EC36840010D54E /* FlyvitechDemoTests.swift */; };
 		873DE78F23EC36840010D54E /* FlyvitechDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873DE78E23EC36840010D54E /* FlyvitechDemoUITests.swift */; };
 		873DE79D23EC37EE0010D54E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873DE79C23EC37EE0010D54E /* Data.swift */; };
+		873DE79F23ED33950010D54E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873DE79E23ED33950010D54E /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		873DE78E23EC36840010D54E /* FlyvitechDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyvitechDemoUITests.swift; sourceTree = "<group>"; };
 		873DE79023EC36840010D54E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		873DE79C23EC37EE0010D54E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		873DE79E23ED33950010D54E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8923B4E0BB268245E2FA750D /* Pods_FlyvitechDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlyvitechDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5BE85EA949097B05D665B08 /* Pods-FlyvitechDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlyvitechDemo.release.xcconfig"; path = "Target Support Files/Pods-FlyvitechDemo/Pods-FlyvitechDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,7 +91,6 @@
 				8188AC56EBE01CB04063AE6E /* Pods-FlyvitechDemo.debug.xcconfig */,
 				C5BE85EA949097B05D665B08 /* Pods-FlyvitechDemo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -121,9 +122,9 @@
 				873DE76C23EC36830010D54E /* AppDelegate.swift */,
 				873DE76E23EC36830010D54E /* SceneDelegate.swift */,
 				873DE77023EC36830010D54E /* ContentView.swift */,
-				873DE79C23EC37EE0010D54E /* Data.swift */,
-				873DE77223EC36840010D54E /* Assets.xcassets */,
-				873DE77723EC36840010D54E /* LaunchScreen.storyboard */,
+				873DE7A823ED47450010D54E /* Model */,
+				873DE7A723ED47270010D54E /* Network */,
+				873DE7A923ED474E0010D54E /* Resources */,
 				873DE77A23EC36840010D54E /* Info.plist */,
 				873DE77423EC36840010D54E /* Preview Content */,
 			);
@@ -156,6 +157,31 @@
 			path = FlyvitechDemoUITests;
 			sourceTree = "<group>";
 		};
+		873DE7A723ED47270010D54E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				873DE79E23ED33950010D54E /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		873DE7A823ED47450010D54E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				873DE79C23EC37EE0010D54E /* Data.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		873DE7A923ED474E0010D54E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				873DE77723EC36840010D54E /* LaunchScreen.storyboard */,
+				873DE77223EC36840010D54E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		B537C5CB3F151B1302FDB4CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +208,8 @@
 			dependencies = (
 			);
 			name = FlyvitechDemo;
+			packageProductDependencies = (
+			);
 			productName = FlyvitechDemo;
 			productReference = 873DE76923EC36830010D54E /* FlyvitechDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -254,6 +282,8 @@
 				Base,
 			);
 			mainGroup = 873DE76023EC36830010D54E;
+			packageReferences = (
+			);
 			productRefGroup = 873DE76A23EC36830010D54E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +371,7 @@
 			files = (
 				873DE76D23EC36830010D54E /* AppDelegate.swift in Sources */,
 				873DE76F23EC36830010D54E /* SceneDelegate.swift in Sources */,
+				873DE79F23ED33950010D54E /* NetworkManager.swift in Sources */,
 				873DE77123EC36830010D54E /* ContentView.swift in Sources */,
 				873DE79D23EC37EE0010D54E /* Data.swift in Sources */,
 			);
