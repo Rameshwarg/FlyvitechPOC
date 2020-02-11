@@ -6,39 +6,36 @@
 //  Copyright © 2020 Ram Gade. All rights reserved.
 //
 
+public typealias CompletionHandler = (_ data: RootData?,_ response: URLResponse?,_ error: Error?)->()
+
 import Foundation
 import ObjectMapper
 
-public class NetworkManager: ObservableObject {
+public class NetworkManager {
   
-    let baseUrl = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
-    @Published var dataList = [Data]()
-    @Published var headerTitle = ""
-    static let sharedIntance = NetworkManager()
+  static let sharedIntance = NetworkManager()//Singleton
+  
+  private init(){
     
-    private init(){
-        load()
-    }
-    
-    func load() {
-        let url = URL(string:baseUrl)!
-        URLSession.shared.dataTask(with: url) {(data,response,error) in
-            do {
-                if let listData = data {
-                    let utf8Data = String(decoding: listData, as: UTF8.self).data(using: .utf8)
-                    let json = try? JSONSerialization.jsonObject(with: utf8Data!, options: [])
-                    let report = try Mapper<RootData>().map(JSON: json as! [String : Any])
-                    DispatchQueue.main.async {
-                        self.dataList = report.result ?? []
-                        self.headerTitle = report.headerTitle ?? ""
-                    }
-                }else {
-                    print("No Data")
-                }
-            } catch {
-                print ("Error")
-            }
-        }.resume()
-        
-    }
+  }
+  
+  public func getData( _ completion: @escaping CompletionHandler) {
+    guard let url = URL(string:Endpoints.baseUrl) else { return }
+    URLSession.shared.dataTask(with: url) {(data,response,error) in
+      do {
+        if let listData = data {
+          let utf8Data = String(decoding: listData, as: UTF8.self).data(using: .utf8)
+          let json = try? JSONSerialization.jsonObject(with: utf8Data!, options: [])
+          let report = try Mapper<RootData>().map(JSON: json as! [String : Any])
+          completion(report, response, error)
+        } else {
+          print("No Data")
+          completion(nil, response, error)
+        }
+      } catch {
+        print ("Error")
+        completion(nil, response, error)
+      }
+    }.resume()
+  }
 }

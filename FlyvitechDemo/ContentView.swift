@@ -12,12 +12,13 @@ import struct Kingfisher.KFImage
 
 struct ContentView: View {
   
-  @ObservedObject var data = NetworkManager.sharedIntance
+  @ObservedObject var listData = DataViewModel()
   let imageSize:CGFloat = 100
   
   var body: some View {
     NavigationView {
-      List(self.data.dataList) { cellData in
+      
+      List(self.listData.dataList) { cellData in
         //load image from url
         KFImage(URL(string:cellData.imageHref ?? ""))
           .onSuccess { r in
@@ -35,7 +36,7 @@ struct ContentView: View {
           Text(cellData.title ?? "")
           Text(cellData.description ?? "").font(.subheadline).colorMultiply(.red)
         }
-      }.navigationBarTitle(Text(data.headerTitle))
+      }.navigationBarTitle(Text(listData.headerTitle))
     }
   }
 }

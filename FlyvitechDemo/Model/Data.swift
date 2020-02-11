@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 public struct RootData {
-  let result : [Data]?
+  let result : [ResponseData]?
   let headerTitle:String?
 }
 
@@ -21,14 +21,14 @@ extension RootData: ImmutableMappable {
   }
 }
 
-struct Data:Identifiable {
+struct ResponseData:Identifiable {
   var id = UUID()
   let title: String?
   let description: String?
   let imageHref: String?
 }
 
-extension Data: ImmutableMappable {
+extension ResponseData: ImmutableMappable {
   public init(map: Map) throws {
     title = try? map.value("title")
     description = try? map.value("description")
